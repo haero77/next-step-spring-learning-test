@@ -1,0 +1,13 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: DEBUG
+            StatementCreatorUtils: TRACE

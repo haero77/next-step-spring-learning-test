@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @JdbcTest
 public class QueryingDaoTest {
+
     private QueryingDAO queryingDAO;
 
     @Autowired
@@ -24,13 +25,18 @@ public class QueryingDaoTest {
         queryingDAO = new QueryingDAO(jdbcTemplate);
 
         jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
-        jdbcTemplate.execute("CREATE TABLE customers(" +
-                "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))");
+
+        jdbcTemplate.execute("""
+                create table customers(
+                    id SERIAL, 
+                    first_name VARCHAR(255), 
+                    last_name VARCHAR(255)
+                )""");
 
         List<Object[]> splitUpNames = Arrays.asList("John Woo", "Jeff Dean", "Josh Bloch", "Josh Long")
-            .stream()
-            .map(name -> name.split(" "))
-            .collect(Collectors.toList());
+                .stream()
+                .map(name -> name.split(" "))
+                .collect(Collectors.toList());
 
         jdbcTemplate.batchUpdate("INSERT INTO customers(first_name, last_name) VALUES (?,?)", splitUpNames);
     }

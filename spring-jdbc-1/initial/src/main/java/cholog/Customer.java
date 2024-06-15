@@ -1,6 +1,7 @@
 package cholog;
 
 public class Customer {
+
     private long id;
     private String firstName, lastName;
 
