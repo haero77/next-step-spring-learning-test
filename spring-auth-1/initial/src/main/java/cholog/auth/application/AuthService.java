@@ -1,5 +1,6 @@
 package cholog.auth.application;
 
+import cholog.auth.dto.AuthInfo;
 import cholog.auth.dto.MemberResponse;
 import cholog.auth.dto.TokenRequest;
 import cholog.auth.dto.TokenResponse;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
+
     private static final String EMAIL = "email@email.com";
     private static final String PASSWORD = "1234";
 
@@ -15,6 +17,10 @@ public class AuthService {
 
     public AuthService(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
+    }
+
+    public boolean checkInvalidLogin(final AuthInfo authInfo) {
+        return !EMAIL.equals(authInfo.getEmail()) || !PASSWORD.equals(authInfo.getPassword());
     }
 
     public boolean checkInvalidLogin(String principal, String credentials) {

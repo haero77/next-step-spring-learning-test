@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BasicLoginController {
+
     private final AuthService authService;
     private final AuthorizationExtractor<AuthInfo> authorizationExtractor;
 
@@ -31,14 +32,13 @@ public class BasicLoginController {
     @GetMapping("/members/me/basic")
     public ResponseEntity<MemberResponse> findMyInfo(HttpServletRequest request) {
         // TODO: authorization 헤더의 Basic 값에 있는 email과 password 추출 (hint: authorizationExtractor 사용)
-        String email = "";
-        String password = "";
+        final AuthInfo authInfo = authorizationExtractor.extract(request);
 
-        if (authService.checkInvalidLogin(email, password)) {
+        if (authService.checkInvalidLogin(authInfo)) {
             throw new AuthorizationException();
         }
 
-        MemberResponse member = authService.findMember(email);
+        MemberResponse member = authService.findMember(authInfo.getEmail());
         return ResponseEntity.ok().body(member);
     }
 }

@@ -15,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class AuthTest {
+
     private static final String USERNAME_FIELD = "email";
     private static final String PASSWORD_FIELD = "password";
     private static final String EMAIL = "email@email.com";

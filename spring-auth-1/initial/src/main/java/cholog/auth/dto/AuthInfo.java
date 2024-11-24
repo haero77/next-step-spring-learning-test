@@ -1,6 +1,7 @@
 package cholog.auth.dto;
 
 public class AuthInfo {
+
     private String email;
     private String password;
 

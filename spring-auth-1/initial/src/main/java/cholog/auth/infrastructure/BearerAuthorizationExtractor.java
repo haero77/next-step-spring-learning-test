@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 public class BearerAuthorizationExtractor implements AuthorizationExtractor<String> {
+
     private static final String BEARER_TYPE = "Bearer";
     private static final String ACCESS_TOKEN_TYPE = BearerAuthorizationExtractor.class.getSimpleName() + ".ACCESS_TOKEN_TYPE";
 
