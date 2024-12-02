@@ -12,6 +12,7 @@ public class BearerAuthorizationExtractor implements AuthorizationExtractor<Stri
     @Override
     public String extract(HttpServletRequest request) {
         Enumeration<String> headers = request.getHeaders(AUTHORIZATION);
+
         while (headers.hasMoreElements()) {
             String value = headers.nextElement();
             if ((value.toLowerCase().startsWith(BEARER_TYPE.toLowerCase()))) {

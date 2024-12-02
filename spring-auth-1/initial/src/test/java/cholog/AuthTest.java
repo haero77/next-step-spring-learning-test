@@ -70,7 +70,8 @@ class AuthTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .accept(MediaType.APPLICATION_JSON_VALUE)
                 .when().post("/login/token")
-                .then().log().all().extract().as(TokenResponse.class).getAccessToken();
+                .then().log().all()
+                .extract().as(TokenResponse.class).getAccessToken();
 
         MemberResponse member = RestAssured
                 .given().log().all()
